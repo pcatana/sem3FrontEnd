@@ -18,8 +18,8 @@ class AdminPage extends Component {
       if (e) {
         return this.setState({ errData: e.err })
       }
-      this.setState({ errData: ""});
-    },user);
+      this.setState({ errData: "" });
+    }, user);
   }
 
   onDelete = (username) => {
@@ -29,13 +29,13 @@ class AdminPage extends Component {
       }
       let users = this.state.users.filter((user) => user.USER_NAME !== username)
       this.setState({ errData: "", users });
-    },username);
+    }, username);
   }
 
   onChange = (e, index) => {
     const propertyName = e.target.name;
     let value;
-    if(propertyName !== "USER_ROLE")
+    if (propertyName !== "USER_ROLE")
       value = e.target.value;
     else
       value = e.target.value.split(",");
@@ -89,10 +89,10 @@ class AdminPage extends Component {
                   return (
                     <tr key={index}>
                       <td >
-                      {user.USER_NAME}
+                        {user.USER_NAME}
                       </td>
                       <td >
-                      <input name="USER_ROLE" value={user.USER_ROLE} onChange={(e) => this.onChange(e, index)} className="form-control"  placeholder={user.USER_ROLE} />
+                        <input name="USER_ROLE" value={user.USER_ROLE} onChange={(e) => this.onChange(e, index)} className="form-control" placeholder={user.USER_ROLE} />
                       </td>
                       <td ><button className="btn btn-lg btn-black btn-block" onClick={() => this.onEdit(user)}>EDIT</button> </td>
                       <td ><button className="btn btn-lg btn-black btn-block" onClick={() => this.onDelete(user.USER_NAME)}>DELETE</button></td>
