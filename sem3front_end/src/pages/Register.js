@@ -37,12 +37,13 @@ class Register extends Component {
         return (
             <div className="container">
                 <form className="form-signin" onSubmit={this.handleSubmit}>
-                    <h2 className="form-signin-heading">Sign Up</h2>
+                    <h2 className="form-signin-heading">Please register...</h2>
                     <label htmlFor="inputEmail" className="sr-only">Email address</label>
                     <input type="text" value={this.state.user.username} onChange={this.onChange} className="form-control" id="username" placeholder="User Name" required autoFocus />
                     <label htmlFor="inputPassword" className="sr-only">Password</label>
                     <input type="password" value={this.state.user.password} onChange={this.onChange} id="password" className="form-control" placeholder="Password" required />
                     <button className="btn btn-lg btn-success btn-block" type="submit">Register</button>
+                    <p className="register">Or <Link to="/login">Log In...</Link></p>
                     <br />
                 </form>
                 {this.state.err && (
@@ -55,7 +56,7 @@ class Register extends Component {
                         {this.state.status}
                     </div>
                 )}
-                <Link to="/login">Log In</Link>
+                
             </div>
         )
     }

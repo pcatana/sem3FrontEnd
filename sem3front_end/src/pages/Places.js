@@ -72,7 +72,7 @@ export default class Places extends React.Component {
                     <AddPlace className="theLine" isOrNot={this.state} />
                 </div>
                 <div>
-                    <Route path="/places/add" render={() => {return <Add  onAddPlace={this.pushToList}/> }} />
+                    <Route path="/places/add" render={() => { return <Add onAddPlace={this.pushToList} /> }} />
                 </div>
 
                 <div className="row">
@@ -144,8 +144,6 @@ class Add extends React.Component {
             })
 
     }
-
-
     render() {
         return (
             <form onSubmit={this.handleSubmit}>

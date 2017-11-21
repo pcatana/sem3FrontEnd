@@ -23,19 +23,21 @@ class TopMenu extends Component {
     //console.log("RENDERING - REMOVE ME",JSON.stringify(this.state));
     return (
       <div>
-        <nav className="navbar navbar-inverse" >
+        <nav className="navbar navbar-inverse navbar-static-top" >
           <div className="container-fluid">
             <div className="navbar-header">
-              <a className="navbar-brand" href="/" style={{ pointerEvents: "none" }}>Holiday Rentals</a>
+              <ul className="nav navbar-nav">
+                <li className=""><Link className="navbar-brand" to="/">Holiday Rentals</Link></li>
+              </ul>
             </div>
             <div >
               <ul className="nav navbar-nav">
                 <li><Link to="/about">About</Link></li>
-                <li><Link to="/places">Places</Link></li>
+                <li><Link to="/places">Rentals</Link></li>
                 {this.state.isAdmin && (<li><Link to="/admin">Page for Admins</Link></li>)}
               </ul>
               <ul className="nav navbar-nav navbar-right">
-                <li className="navbar-text" style={{ color: "steelBlue" }}>{logInStatus}</li>
+                <li className="navbar-text" style={{ color: "white" }}>{logInStatus}</li>
                 <li>
                   {this.state.loggedIn ?
                     (
