@@ -15,7 +15,7 @@ function App() {
     <div>
       <TopMenu />
       <Switch>
-        <Route path="/RentalDetails" component={RentalDetails} />
+        <Route path="/RentalDetails/:id" component={RentalDetails} />
         <Route path="/places" component={Places} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
