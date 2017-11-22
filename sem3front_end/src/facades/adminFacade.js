@@ -8,7 +8,7 @@ class AdminStore {
     this._errorMessage = "";
   }
 
-  getData = (cb) => {
+  getData = (callback) => {
     this._errorMessage = "";
     this._messageFromServer = "";
     let resFromFirstPromise=null;  //Pass on response the "second" promise so we can read errors from server
@@ -19,17 +19,13 @@ class AdminStore {
         return res.json();
       }).then((data) => {
         errorChecker(resFromFirstPromise,data);
-        if (cb) {
-          cb(null, data.message)
-        }
+          callback(null, data.message)
       }).catch(err => {
-        if (cb) {
-          cb({ err: fetchHelper.addJustErrorMessage(err) })
-        }
+          callback({ err: fetchHelper.addJustErrorMessage(err) })
       })
   }
 
-  getUsers = (cb) => {
+  getUsers = (callback) => {
     this._errorMessage = "";
     this._messageFromServer = "";
     let resFromFirstPromise=null;  //Pass on response the "second" promise so we can read errors from server
@@ -40,17 +36,17 @@ class AdminStore {
         return res.json();
       }).then((data) => {
         errorChecker(resFromFirstPromise,data);
-        if (cb) {
-          cb(null, data.users)
+        if (callback) {
+          callback(null, data.users)
         }
       }).catch(err => {
-        if (cb) {
-          cb({ err: fetchHelper.addJustErrorMessage(err) })
+        if (callback) {
+          callback({ err: fetchHelper.addJustErrorMessage(err) })
         }
       })
   }
 
-  editUser = (cb,user) => {
+  editUser = (callback,user) => {
     console.log(user.USER_ROLE)
     let data = user.USER_ROLE.map( (role) => { return {roleName:role} } )
 
@@ -65,17 +61,13 @@ class AdminStore {
         return res.json();
       }).then((data) => {
         errorChecker(resFromFirstPromise,data);
-        if (cb) {
-          cb(null, data.users)
-        }
+          callback(null, data.users)
       }).catch(err => {
-        if (cb) {
-          cb({ err: fetchHelper.addJustErrorMessage(err) })
-        }
+        callback({ err: fetchHelper.addJustErrorMessage(err) })
       })
   }
 
-  deleteUser = (cb, username) => {
+  deleteUser = (callback, username) => {
     this._errorMessage = "";
     this._messageFromServer = "";
     let resFromFirstPromise=null;  //Pass on response the "second" promise so we can read errors from server
@@ -86,9 +78,9 @@ class AdminStore {
         return res.json();
       }).then((data) => {
         errorChecker(resFromFirstPromise,data);
-        cb(null)
+        callback(null, data)
       }).catch(err => {
-        cb({ err: fetchHelper.addJustErrorMessage(err) })
+        callback({ err: fetchHelper.addJustErrorMessage(err) })
       })
   }
 

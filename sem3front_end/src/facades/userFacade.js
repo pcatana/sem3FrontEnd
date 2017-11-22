@@ -8,51 +8,47 @@ class UserStore {
     this._errorMessage = "";
   }
 
-  getData = (cb) => {
+  getData = (callback) => {
     this._errorMessage = "";
     this._messageFromServer = "";
+
     let resFromFirstPromise=null;  //Pass on response the "second" promise so we can read errors from server
+
     const options = fetchHelper.makeOptions("GET", true);
+
     fetch(URL + "api/demouser", options)
       .then((res) => {
         resFromFirstPromise = res;
         return res.json();
       }).then((data) => {
         errorChecker(resFromFirstPromise,data);
-        if (cb) {
-          cb(null, data.message)
-        }
+        callback(null, data.message)
       }).catch(err => {
         console.log(JSON.stringify(err))
-        if (cb) {
-          cb({ err: fetchHelper.addJustErrorMessage(err) })
-        }
+          callback({ err: fetchHelper.addJustErrorMessage(err) })
       })
   }
 
-  getRandomNumber = (cb) => {
+  getRandomNumber = (callback) => {
     this._errorMessage = "";
     this._messageFromServer = "";
+
     let resFromFirstPromise=null;  //Pass on response the "second" promise so we can read errors from server
+
     const options = fetchHelper.makeOptions("GET", true);
+
     fetch(URL + "api/demouser/random", options)
       .then((res) => {
         resFromFirstPromise = res;
         return res.json();
       }).then((data) => {
         errorChecker(resFromFirstPromise,data);        
-        if (cb) {
-          cb(null, data)
-        }
+        callback(null, data)
       }).catch(err => {
         console.log(JSON.stringify(err))
-        if (cb) {
-          cb({ err: fetchHelper.addJustErrorMessage(err) })
-        }
+          callback({ err: fetchHelper.addJustErrorMessage(err) })
       })
   }
-  
-
 }
 
 let userStore = new UserStore();
