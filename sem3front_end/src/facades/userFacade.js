@@ -15,7 +15,6 @@ class UserStore {
     let resFromFirstPromise=null;  //Pass on response the "second" promise so we can read errors from server
 
     const options = fetchHelper.makeOptions("GET", true);
-
     fetch(URL + "api/demouser", options)
       .then((res) => {
         resFromFirstPromise = res;
@@ -36,7 +35,6 @@ class UserStore {
     let resFromFirstPromise=null;  //Pass on response the "second" promise so we can read errors from server
 
     const options = fetchHelper.makeOptions("GET", true);
-
     fetch(URL + "api/demouser/random", options)
       .then((res) => {
         resFromFirstPromise = res;

@@ -11,7 +11,9 @@ class AdminStore {
   getData = (callback) => {
     this._errorMessage = "";
     this._messageFromServer = "";
+
     let resFromFirstPromise=null;  //Pass on response the "second" promise so we can read errors from server
+
     const options = fetchHelper.makeOptions("GET", true);
     fetch(URL + "api/demoadmin", options)
       .then((res) => {
@@ -28,7 +30,9 @@ class AdminStore {
   getUsers = (callback) => {
     this._errorMessage = "";
     this._messageFromServer = "";
+
     let resFromFirstPromise=null;  //Pass on response the "second" promise so we can read errors from server
+
     const options = fetchHelper.makeOptions("GET", true);
     fetch(URL + "api/demoadmin/users", options)
       .then((res) => {
@@ -53,7 +57,9 @@ class AdminStore {
     console.log(data);
     this._errorMessage = "";
     this._messageFromServer = "";
+
     let resFromFirstPromise=null;  //Pass on response the "second" promise so we can read errors from server
+
     const options = fetchHelper.makeOptions("PUT", true, data);
     fetch(URL + "api/users/" + user.USER_NAME + "/roles" , options)
       .then((res) => {
@@ -70,7 +76,9 @@ class AdminStore {
   deleteUser = (callback, username) => {
     this._errorMessage = "";
     this._messageFromServer = "";
+
     let resFromFirstPromise=null;  //Pass on response the "second" promise so we can read errors from server
+    
     const options = fetchHelper.makeOptions("DELETE", true);
     fetch(URL + "api/users/" + username, options)
       .then((res) => {
