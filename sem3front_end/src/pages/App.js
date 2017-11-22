@@ -7,6 +7,7 @@ import AdminPage from "./AdminPage";
 import TopMenu from "./TopMenu";
 import Register from './Register';
 import Places from './Places';
+import RentalDetails from "./RentalDetails";
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
     <div>
       <TopMenu />
       <Switch>
+        <Route path="/RentalDetails" component={RentalDetails} />
         <Route path="/places" component={Places} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />

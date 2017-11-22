@@ -27,7 +27,7 @@ export default class Places extends React.Component {
 
 
     componentDidMount() {
-        fetch(serverURL + "api/places")
+        fetch(serverURL + "api/rentals")
             .then(res => {
                 return res.json();
             })
@@ -79,13 +79,16 @@ export default class Places extends React.Component {
                     {
                         places.map((place) => {
                             return (
-                                <div key={place.id} className="col-sm-2" style={{ width: 254 }}>
-                                    <img src={place.imageUrl} style={{ width: 250 }} />
-                                    <div >
-                                        <h4 >{place.city}</h4>
-                                        <p>{place.description}</p>
-                                        <p>ZIP: {place.zip}</p>
-                                        <p>Rating: {place.rating}</p>
+                                <div key={place.id} className="col-sm-6 col-md-4" style={{ width: 254 }}>
+                                    <div className="thumbnail">
+                                        <img src={place.imageUrl} style={{ width: 250 }} />
+                                        <div className="caption">
+                                            <h4 >{place.city}</h4>
+                                            <p>{place.description}</p>
+                                            <p>ZIP: {place.zip}</p>
+                                            <p>Rating: {place.rating}</p>
+                                            <p><Link className="btn btn-info btn-sm" to={`RentalDetails/${place.id}`}  >Learn more</Link></p>
+                                        </div>
                                     </div>
                                 </div>
                             )
@@ -101,7 +104,7 @@ export default class Places extends React.Component {
 const AddPlace = (props) => {
     let isOrNot = props.isOrNot;
     if (isOrNot.isUser || isOrNot.isAdmin) {
-        return <Link className="btn btn-alert add" to="/places/add">Add Place</Link>
+        return <Link className="btn btn-primary add" to="/places/add">Add Place</Link>
     } else {
         return ""
     }
