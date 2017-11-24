@@ -149,14 +149,25 @@ class Add extends React.Component {
     }
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <input type="text" name="city" placeholder="City" onChange={this.handleChange} />
-                <input type="text" name="address" placeholder="Address" onChange={this.handleChange} />
-                <input type="text" name="zip" placeholder="Zip" onChange={this.handleChange} />
-                <input type="text" name="description" placeholder="Description" onChange={this.handleChange} />
-                <input type="file" name="file" onChange={this.handleChange} />
-                <button type="submit" >Submit</button>
-            </form>
+            <div className="row">
+                <div className="col-sm-6">
+                    <div className="panel panel-default">
+                        <div className="panel-heading">Add a new rental</div>
+                        <div className="panel-body">
+                            <form className="line" onSubmit={this.handleSubmit}>
+                                <input className="add-input" type="text" name="city" placeholder="City" onChange={this.handleChange} />
+                                <input className="add-input" type="text" name="address" placeholder="Address" onChange={this.handleChange} />
+                                <input className="add-input" type="text" name="zip" placeholder="Zip" onChange={this.handleChange} />
+                                <input className="add-input" type="text" name="description" placeholder="Description" onChange={this.handleChange} />
+                                <input className="inputfile inputfile.has-focus inputfile-1 inputfile-1.has-focus" type="file" name="file" id="file" onChange={this.handleChange} />
+                                <label className="" for="file">Choose a file</label>
+                                <button className="btn btn-success register" type="submit" >Submit</button>
+                            </form>
+                            <Link className="btn btn-danger register cancel-btn" to="/places">Cancel </Link>
+                        </div>
+                    </div>
+                </div>
+            </div>
         )
     }
 }
