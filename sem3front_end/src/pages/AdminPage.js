@@ -39,7 +39,6 @@ class AdminPage extends Component {
       value = e.target.value;
     else
       value = e.target.value.split(",");
-    const finalValue = value;
     let users = this.state.users;
     users[index][propertyName] = value;
     this.setState({ users });

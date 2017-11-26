@@ -17,7 +17,7 @@ class Login extends Component {
         return this.setState({ err: err.errorMessage });
       }
       this.setState({ err: "" });
-      this.props.history.push("/");
+      this.props.history.push("/places");
     });
   }
 
@@ -43,11 +43,10 @@ class Login extends Component {
           <br />
         </form>
         {this.state.err && (
-          <div className="alert alert-danger errmsg" role="alert">
+          <div className="logout alert alert-danger errmsg" role="alert">
             {this.state.err}
           </div>
         )}
-
       </div>
     )
   }

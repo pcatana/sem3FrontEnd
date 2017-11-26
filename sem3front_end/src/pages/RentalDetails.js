@@ -1,13 +1,14 @@
 import React from 'react';
 import { serverURL } from '../config.json';
-
-
+import auth from '../authorization/auth';
+import Booking from './Booking';
 
 export default class RentalDetails extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            place: {}
+            place: {},
+            loggedIn: auth.loggedIn, userName: auth.userName, isUser: auth.isUser, isAdmin: auth.isAdmin
         }
     }
     componentDidMount() {
@@ -32,9 +33,10 @@ export default class RentalDetails extends React.Component {
                 <div className="row">
                     <div className="col-sm-8 col-md-8">
                         <div className="thumbnail">
-                            <img src={place.imageUrl} />
+                            <img src={place.imageUrl} alt=""/>
                             <div className="caption">
-                                <h1>{place.city}</h1>
+                                <h1>{place.title}</h1>
+                                <h3>{place.city}</h3>
                                 <p>Description: {place.description} </p>
                                 <p>Address: {place.address} </p>
                                 <p>Zip: {place.zip} </p>
@@ -43,14 +45,7 @@ export default class RentalDetails extends React.Component {
                         </div>
                     </div>
                     <div className="col-sm-4 col-md-4">
-                        <div className="panel panel-default">
-                            <div className="panel-heading">Book Your Holiday</div>
-                            <div className="panel-body">
-                                <p className="line">Choose your time frame: </p>
-                                <input id="date" type="date" />
-                                <input className="btn btn-success btn-block theLine register" type="button" name="Book" value="Book" />
-                            </div>
-                        </div>
+                        <Booking />
                     </div>
                 </div>
                 <div>
@@ -74,3 +69,4 @@ export default class RentalDetails extends React.Component {
         )
     }
 }
+

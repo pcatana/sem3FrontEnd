@@ -52,7 +52,6 @@ class TopMenu extends Component {
             </div>
           </div>
         </nav>
-
       </div>
     )
   }

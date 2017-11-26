@@ -65,6 +65,7 @@ export default class Places extends React.Component {
 
     render() {
         const places = this.state.places;
+        console.log("places: ", places);
         return (
             <div className="container">
                 <div className="line">
@@ -81,13 +82,14 @@ export default class Places extends React.Component {
                             return (
                                 <div key={place.id} className="col-sm-6 col-md-4" style={{ width: 254 }}>
                                     <div className="thumbnail">
-                                        <img src={place.imageUrl} style={{ width: 250 }} />
+                                        <img src={place.imageUrl} style={{ width: 250 }} alt=""/>
                                         <div className="caption">
-                                            <h4 >{place.city}</h4>
+                                            <h4>{place.title}</h4>
+                                            <p>{place.city}</p>
                                             <p>{place.description}</p>
                                             <p>ZIP: {place.zip}</p>
                                             <p>Rating: {place.rating}</p>
-                                            <p><Link className="btn btn-info btn-sm" to={`RentalDetails/${place.id}`}  >Learn more</Link></p>
+                                            <p><Link className="btn btn-info btn-sm" to={`RentalDetails/${place.id}`}>Learn more</Link></p>
                                         </div>
                                     </div>
                                 </div>
@@ -103,7 +105,7 @@ export default class Places extends React.Component {
 
 const AddPlace = (props) => {
     let isOrNot = props.isOrNot;
-    if (isOrNot.isUser || isOrNot.isAdmin) {
+    if ( isOrNot.isAdmin) {
         return <Link className="btn btn-primary add" to="/places/add">Add Place</Link>
     } else {
         return ""
@@ -114,6 +116,7 @@ class Add extends React.Component {
     constructor() {
         super();
         this.state = {
+            title: "",
             city: "",
             address: "",
             zip: "",
@@ -138,7 +141,7 @@ class Add extends React.Component {
             formData.append(key, this.state[key]);
         }
 
-        fetch(serverURL + "api/places/add", { method: "POST", body: formData })
+        fetch(serverURL + "api/rentals", { method: "POST", body: formData })
             .then(res => {
                 return res.json();
             })
@@ -155,11 +158,12 @@ class Add extends React.Component {
                         <div className="panel-heading">Add a new rental</div>
                         <div className="panel-body">
                             <form className="line" onSubmit={this.handleSubmit}>
+                                <input className="add-input" type="text" name="title" placeholder="Title" onChange={this.handleChange} />
                                 <input className="add-input" type="text" name="city" placeholder="City" onChange={this.handleChange} />
                                 <input className="add-input" type="text" name="address" placeholder="Address" onChange={this.handleChange} />
                                 <input className="add-input" type="text" name="zip" placeholder="Zip" onChange={this.handleChange} />
                                 <input className="add-input" type="text" name="description" placeholder="Description" onChange={this.handleChange} />
-                                <input className="inputfile inputfile.has-focus inputfile-1 inputfile-1.has-focus" type="file" name="file" id="file" onChange={this.handleChange} />
+                                <input className="inputfile inputfile.has-focus inputfile-1 inputfile-1.has-focus " style={{}} type="file" name="file" id="file" onChange={this.handleChange} />
                                 <label className="" for="file">Choose a file</label>
                                 <button className="btn btn-success register" type="submit" >Submit</button>
                             </form>

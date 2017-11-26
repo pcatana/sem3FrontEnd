@@ -26,7 +26,7 @@ export default {
    * @param {*} err 
    */
   addJustErrorMessage(err){
-    return  (err.message) === "Failed to fetch" ? `Failed to connect to the server (is the server running?)`: err.message;
+    return  (err.message) === "Failed to fetch" ? `Looks like we couldn't make a connection. Try again! `: err.message;
   }
 }
 
@@ -43,16 +43,16 @@ export const errorChecker = function(res,data){
     return;
   }
   if (res.status === 400) {
-    throw new Error(makeErrorMsg(data,"Server could not handle the Request"));
+    throw new Error(makeErrorMsg(data,"Wrong username/password, please try again!"));
   }
   if (res.status === 401 || res.status === 403) {
-    const msg = makeErrorMsg(data,"Sorry, you could not be authenticated");
+    const msg = makeErrorMsg(data,"There seems to be an issue, please try again shortly!");
     throw new Error(msg);
   }
   if (res.status === 403) {
     
   }
   if (res.status > 200 || !res.ok) {
-    throw new Error(makeErrorMsg(data,"Sorry, you could not be authenticated"));
+    throw new Error(makeErrorMsg(data,"There seems to be an issue, please try again shortly!"));
   }
 }

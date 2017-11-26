@@ -5,6 +5,9 @@
     padding-left: 20px;
     margin-bottom: 10px;
   }
+ .logout {
+     text-align: center;
+ } 
 .line {
     display: inline;
 }
@@ -18,9 +21,13 @@
     margin-bottom: 10px;
 }
 .register { 
-    text-align: center;   
+    text-align: center;       
+    margin-left: 190px;
     margin-top: 10px; 
-
+}
+.book{
+    text-align: center; 
+    margin-top: 10px; 
 }
 .add-input {
     margin: 3px;
@@ -38,7 +45,8 @@
 	height: 0.1px;
 	opacity: 0;
 	overflow: hidden;
-	position: relative;
+    position: relative;
+    margin: 2px;
 	z-index: -1;
 }
 
