@@ -54,7 +54,7 @@ export default class Landing extends Component {
 				      <div className="row">
 				        <div className="col-md-8">
 				          <h3 className="subscribe-title">Subscribe For Updates</h3>
-				          <p className="subscribe-text">Join our 1000+ subscribers and get updates on our latest feature updates, new locations support, and amazing rental deals</p>
+				          <p className="subscribe-text">Join our -1000 subscribers and get updates on our latest feature updates, new locations support, and amazing rental deals</p>
 				        </div>
 				        <div className="col-md-4 subscribe-btn-container">
 				          <a className="subscribe-btn" href="#">Subscribe Now</a>
@@ -77,7 +77,7 @@ export default class Landing extends Component {
 				        <div className="col-md-3">
 				          <div className="profile">
 				            <div className="pic"><img src="img/client-1.jpg" alt=""></img></div>
-				            <h4>Lars</h4>
+				            <h4>Lars (when he was young)</h4>
 				            <span>Copenhagen Business Academy</span>
 				          </div>
 				        </div>
@@ -97,7 +97,7 @@ export default class Landing extends Component {
 				        <div className="col-md-3">
 				          <div className="profile">
 				            <div className="pic"><img src="img/caroline.jpg" alt=""></img></div>
-				            <h4>Caroline Simonsen</h4>
+				            <h4>Caroline Simonsen (no picture provided)</h4>
 				            <span>Copenhagen Business Academy</span>
 				          </div>
 				        </div>
