@@ -163,7 +163,7 @@ export default class Landing extends Component {
 				          <div className="member">
 				            <div className="pic"><img src="img/patrick.jpg" alt=""></img></div>
 				            <h4>Patrick Fenger</h4>
-				            <span>Backend Endpoint Authority and HTML Programmer (#partyhard)</span>
+				            <span>Backend Endpoint Authority and Foosball World Champion</span>
 				            <div className="social">
 				              <a href=""><i className="fa fa-twitter"></i></a>
 				              <a href=""><i className="fa fa-facebook"></i></a>
