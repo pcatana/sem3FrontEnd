@@ -25,40 +25,25 @@ export default class Landing extends Component {
 				        <div className="col-md-12">
 				          <h3 className="section-title">Our Services</h3>
 				          <div className="section-title-divider"></div>
-				          <p className="section-description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium</p>
+				          <p className="section-description">You can see locations, you can rent places, you can do everything, in three words, best app ever</p>
 				        </div>
 				      </div>
 
 				      <div className="row">
 				        <div className="col-md-4 service-item">
 				          <div className="service-icon"><i className="fa fa-desktop"></i></div>
-				          <h4 className="service-title"><a href="">Lorem Ipsum</a></h4>
-				          <p className="service-description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+				          <h4 className="service-title"><a href="">Rentals Overview</a></h4>
+				          <p className="service-description">Search, filter, and see the world</p>
+				        </div>
+				        <div className="col-md-4 service-item">
+				          <div className="service-icon"><i className="fa fa-image"></i></div>
+				          <h4 className="service-title"><a href="">Ratings</a></h4>
+				          <p className="service-description">Rentals and Locations have an average rating, and you can contribute. Your review mattress!</p>
 				        </div>
 				        <div className="col-md-4 service-item">
 				          <div className="service-icon"><i className="fa fa-bar-chart"></i></div>
-				          <h4 className="service-title"><a href="">Dolor Sitema</a></h4>
-				          <p className="service-description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
-				        </div>
-				        <div className="col-md-4 service-item">
-				          <div className="service-icon"><i className="fa fa-paper-plane"></i></div>
-				          <h4 className="service-title"><a href="">Sed ut perspiciatis</a></h4>
-				          <p className="service-description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
-				        </div>
-				        <div className="col-md-4 service-item">
-				          <div className="service-icon"><i className="fa fa-photo"></i></div>
-				          <h4 className="service-title"><a href="">Magni Dolores</a></h4>
-				          <p className="service-description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-				        </div>
-				        <div className="col-md-4 service-item">
-				          <div className="service-icon"><i className="fa fa-road"></i></div>
-				          <h4 className="service-title"><a href="">Nemo Enim</a></h4>
-				          <p className="service-description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
-				        </div>
-				        <div className="col-md-4 service-item">
-				          <div className="service-icon"><i className="fa fa-shopping-bag"></i></div>
-				          <h4 className="service-title"><a href="">Eiusmod Tempor</a></h4>
-				          <p className="service-description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
+				          <h4 className="service-title"><a href="">Details</a></h4>
+				          <p className="service-description">Add and view pictures and details to rentals and locations</p>
 				        </div>
 				      </div>
 				    </div>
@@ -69,7 +54,7 @@ export default class Landing extends Component {
 				      <div className="row">
 				        <div className="col-md-8">
 				          <h3 className="subscribe-title">Subscribe For Updates</h3>
-				          <p className="subscribe-text">Join our 1000+ subscribers and get updates on our latest feature updates, new locations support, and amazing rental deals</p>
+				          <p className="subscribe-text">Join our -1000 subscribers and get updates on our latest feature updates, new locations support, and amazing rental deals</p>
 				        </div>
 				        <div className="col-md-4 subscribe-btn-container">
 				          <a className="subscribe-btn" href="#">Subscribe Now</a>
@@ -84,7 +69,7 @@ export default class Landing extends Component {
 				        <div className="col-md-12">
 				          <h3 className="section-title">Testimonials</h3>
 				          <div className="section-title-divider"></div>
-				          <p className="section-description">Erdo lide, nora porodo filece, salvam esse se, quod concedimus ses haec dicturum fuisse</p>
+				          <p className="section-description">The quality of our work impresses, and here's the testimonials to prove it.</p>
 				        </div>
 				      </div>
 
@@ -92,7 +77,7 @@ export default class Landing extends Component {
 				        <div className="col-md-3">
 				          <div className="profile">
 				            <div className="pic"><img src="img/client-1.jpg" alt=""></img></div>
-				            <h4>Lars</h4>
+				            <h4>Lars (when he was young)</h4>
 				            <span>Copenhagen Business Academy</span>
 				          </div>
 				        </div>
@@ -112,7 +97,7 @@ export default class Landing extends Component {
 				        <div className="col-md-3">
 				          <div className="profile">
 				            <div className="pic"><img src="img/caroline.jpg" alt=""></img></div>
-				            <h4>Caroline Simonsen</h4>
+				            <h4>Caroline Simonsen (no picture provided)</h4>
 				            <span>Copenhagen Business Academy</span>
 				          </div>
 				        </div>
@@ -213,12 +198,12 @@ export default class Landing extends Component {
 
 				            <div>
 				              <i className="fa fa-envelope"></i>
-				              <p>info@example.com</p>
+				              <p>groop10@thismaildoesnotexist.dk</p>
 				            </div>
 
 				            <div>
 				              <i className="fa fa-phone"></i>
-				              <p>+1 5589 55488 55s</p>
+				              <p>+45 69 69 69 69</p>
 				            </div>
 
 				          </div>
@@ -259,7 +244,7 @@ export default class Landing extends Component {
 				      <div className="row">
 				        <div className="col-md-12">
 				          <div className="credits">
-				            <a>What are you doing here? Scroll up! Go rent something you fucktard!</a>
+				            <a>What are you doing here? Scroll up!</a>
 				          </div>
 				        </div>
 				      </div>
