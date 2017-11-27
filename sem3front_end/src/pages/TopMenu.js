@@ -27,7 +27,7 @@ class TopMenu extends Component {
           <div className="container-fluid">
             <div className="navbar-header">
               <ul className="nav navbar-nav">
-                <li className=""><Link className="navbar-brand" to="/">Holiday Rentals</Link></li>
+                <li className=""><Link className="navbar-brand" to="/home">Holiday Rentals</Link></li>
               </ul>
             </div>
             <div >
