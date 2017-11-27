@@ -16,7 +16,7 @@ function App() {
     <div>
       <TopMenu />
       <Switch>
-        <Route path="/home" component={Landing} />
+        <Route path="/home" component={Landing} />        
         <Route path="/RentalDetails/:id" component={RentalDetails} />
         <Route path="/places" component={Places} />
         <Route path="/login" component={Login} />

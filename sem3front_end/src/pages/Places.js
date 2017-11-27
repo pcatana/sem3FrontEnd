@@ -121,6 +121,8 @@ class Add extends React.Component {
             address: "",
             zip: "",
             description: "",
+            latitude: "",
+            longitude: "",
             file: null
         }
     }
@@ -163,6 +165,8 @@ class Add extends React.Component {
                                 <input className="add-input" type="text" name="address" placeholder="Address" onChange={this.handleChange} />
                                 <input className="add-input" type="text" name="zip" placeholder="Zip" onChange={this.handleChange} />
                                 <input className="add-input" type="text" name="description" placeholder="Description" onChange={this.handleChange} />
+                                <input className="add-input" type="number" step="any" min="0" name="latitude" placeholder="Latitude" onChange={this.handleChange} />
+                                <input className="add-input" type="number" step="any" min="0" name="longitude" placeholder="Longitude" onChange={this.handleChange} />
                                 <input className="inputfile inputfile.has-focus inputfile-1 inputfile-1.has-focus " style={{}} type="file" name="file" id="file" onChange={this.handleChange} />
                                 <label className="" for="file">Choose a file</label>
                                 <button className="btn btn-success register" type="submit" >Submit</button>
