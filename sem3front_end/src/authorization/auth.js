@@ -14,6 +14,10 @@ class AuthenticationHandler {
     this._errorMessage = "";
   }
 
+  get getToken(){
+    return this._token;
+  }
+
   get isloggedIn() {
     return this._token !== null;
   }

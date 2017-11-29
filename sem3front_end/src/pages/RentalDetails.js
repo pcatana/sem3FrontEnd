@@ -13,22 +13,13 @@ export default class RentalDetails extends React.Component {
             place: {},
             locations: [],
             initialLocations: [],
-            loggedIn: auth.loggedIn, userName: auth.userName, isUser: auth.isUser, isAdmin: auth.isAdmin,
-            rating: 2.5
+            loggedIn: auth.loggedIn, userName: auth.userName, isUser: auth.isUser, isAdmin: auth.isAdmin, token: auth.getToken,
+            
         }
     }
     componentDidMount() {
         let rentalId = this.props.match.params.id;
-        fetch(serverURL + "api/rentals/" + rentalId)
-            .then(res => {
-                return res.json();
-            })
-            .then(places => {
-                this.setState({
-                    place: places,
-                    
-                });
-            })
+        this.getRental();
         fetch(serverURL + "api/rentals/" + rentalId + "/near-locations/")
             .then(res => {
                 return res.json();
@@ -41,12 +32,44 @@ export default class RentalDetails extends React.Component {
             })
 
     }
+    getRental= () =>{
+        let rentalId = this.props.match.params.id;
+        fetch(serverURL + "api/rentals/" + rentalId)
+            .then(res => {
+                return res.json();
+            })
+            .then(places => {
+                this.setState({
+                    place: places,
+
+                });
+            })
+    }
 
     changeRating = (newRating) => {
-        this.setState({
-            rating: newRating
-        });
+        let rentalId = this.props.match.params.id;
+        let place = this.state.place;
+        const rating = {
+            "rating": newRating
+        };
 
+        const options = {
+            method: 'put',
+            body: JSON.stringify(rating),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                "Authorization": "bearer "+this.state.token
+            }
+        }
+        fetch(serverURL+"api/rentals/" + rentalId+"/rating", options)
+        .then(res => {
+            return res.json();
+        })
+        .then(newRating => {
+            this.getRental()
+        })
+        
     }
 
     pushToList = (location) => {
@@ -80,7 +103,7 @@ export default class RentalDetails extends React.Component {
                                 <p>Latitude: {place.latitude} </p>
                                 <p>Longitude: {place.longitude} </p>
                                 <StarRatings
-                                    rating={this.state.rating}
+                                    rating={place.rating}
                                     isSelectable={isOrNot.isAdmin || isOrNot.isUser}
                                     isAggregateRating={true}
                                     changeRating={this.changeRating}
@@ -101,7 +124,7 @@ export default class RentalDetails extends React.Component {
                     <div className="page-header">
                         <h1>Places near by </h1>
                         {
-                            isOrNot.isUser ?
+                            isOrNot.isUser || isOrNot.isAdmin ?
                                 (
                                     <NavLink className="btn btn-primary add" to={`${this.props.match.url}/add`} >Add Location</NavLink>
                                 ) :
@@ -111,7 +134,7 @@ export default class RentalDetails extends React.Component {
                         }
                     </div>
                     <div>
-                        <Route path={`${this.props.match.url}/add`}  render={(props) => {return <Add {...props} onAddLocation={this.pushToList}/>}} />
+                        <Route path={`${this.props.match.url}/add`} render={(props) => { return <Add {...props} onAddLocation={this.pushToList} /> }} />
                     </div>
                     <div className="row">
                         {
@@ -177,7 +200,7 @@ class Add extends React.Component {
             })
 
     }
-    render() {        
+    render() {
         console.log("theProps", this.props);
         return (
             <div className="row">
