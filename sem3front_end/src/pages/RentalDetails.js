@@ -3,7 +3,7 @@ import { serverURL } from '../config.json';
 import auth from '../authorization/auth';
 import Booking from './Booking';
 import StarRatings from 'react-star-ratings';
-import { Link, Route } from 'react-router-dom';
+import { NavLink, Route } from 'react-router-dom';
 
 
 export default class RentalDetails extends React.Component {
@@ -12,6 +12,7 @@ export default class RentalDetails extends React.Component {
         this.state = {
             place: {},
             locations: [],
+            initialLocations: [],
             loggedIn: auth.loggedIn, userName: auth.userName, isUser: auth.isUser, isAdmin: auth.isAdmin,
             rating: 2.5
         }
@@ -25,6 +26,7 @@ export default class RentalDetails extends React.Component {
             .then(places => {
                 this.setState({
                     place: places,
+                    
                 });
             })
         fetch(serverURL + "api/rentals/" + rentalId + "/near-locations/")
@@ -34,6 +36,7 @@ export default class RentalDetails extends React.Component {
             .then(locations => {
                 this.setState({
                     locations: locations,
+                    initialLocations: locations
                 });
             })
 
@@ -46,11 +49,21 @@ export default class RentalDetails extends React.Component {
 
     }
 
+    pushToList = (location) => {
+        let allLocations = this.state.initialLocations;
+        allLocations.push(location);
+        this.setState({
+            locations: allLocations,
+            initialLocations: allLocations
+        })
+        this.props.history.push(`${this.props.history.pop}`);
+    }
+
     render() {
         const place = this.state.place;
         const isOrNot = this.state;
         const locations = this.state.locations;
-        console.log("locations", this.state.locations)
+        console.log("locations", this.state)
         return (
             <div className="container">
                 <div className="row">
@@ -64,6 +77,8 @@ export default class RentalDetails extends React.Component {
                                 <p>Address: {place.address} </p>
                                 <p>Zip: {place.zip} </p>
                                 <p>Rating: {place.rating} </p>
+                                <p>Latitude: {place.latitude} </p>
+                                <p>Longitude: {place.longitude} </p>
                                 <StarRatings
                                     rating={this.state.rating}
                                     isSelectable={isOrNot.isAdmin || isOrNot.isUser}
@@ -85,12 +100,19 @@ export default class RentalDetails extends React.Component {
                 <div>
                     <div className="page-header">
                         <h1>Places near by </h1>
-                        <AddPlace className="theLine" isOrNot={this.state} />
+                        {
+                            isOrNot.isUser ?
+                                (
+                                    <NavLink className="btn btn-primary add" to={`${this.props.match.url}/add`} >Add Location</NavLink>
+                                ) :
+                                (
+                                    <div> </div>
+                                )
+                        }
                     </div>
                     <div>
-                        <Route path={`${isOrNot.place.id}/add`} component={Add} />
-                        <Add />
-                    </div>                    
+                        <Route path={`${this.props.match.url}/add`}  render={(props) => {return <Add {...props} onAddLocation={this.pushToList}/>}} />
+                    </div>
                     <div className="row">
                         {
                             locations.map((place) => {
@@ -116,20 +138,13 @@ export default class RentalDetails extends React.Component {
     }
 }
 
-const AddPlace = (props) => {
-    let isOrNot = props.isOrNot;
-    if (isOrNot.isUser) {
-        return <Link className="btn btn-primary add" to={`${isOrNot.place.id}/add`} >Add Location</Link>
-    } else {
-        return ""
-    }
-}
-
 class Add extends React.Component {
     constructor(props) {
         super(props);
+        const ImportedProps = this.props;
+        console.log("importedProps", ImportedProps);
         this.state = {
-            title: "",            
+            title: "",
             description: "",
             latitude: "",
             longitude: "",
@@ -157,12 +172,13 @@ class Add extends React.Component {
             .then(res => {
                 return res.json();
             })
-            .then(place => {
-                this.props.onAddPlace(place);
+            .then(location => {
+                this.props.onAddLocation(location);
             })
 
     }
     render() {        
+        console.log("theProps", this.props);
         return (
             <div className="row">
                 <div className="col-sm-6">
@@ -170,14 +186,15 @@ class Add extends React.Component {
                         <div className="panel-heading">Add a new location</div>
                         <div className="panel-body">
                             <form className="line" onSubmit={this.handleSubmit}>
-                                <input className="add-input" type="text" name="title" placeholder="Title" onChange={this.handleChange} />           
+                                <input className="add-input" type="text" name="title" placeholder="Title" onChange={this.handleChange} />
                                 <input className="add-input" type="text" name="description" placeholder="Description" onChange={this.handleChange} />
                                 <input className="add-input" type="number" step="any" min="0" name="latitude" placeholder="Latitude" onChange={this.handleChange} />
                                 <input className="add-input" type="number" step="any" min="0" name="longitude" placeholder="Longitude" onChange={this.handleChange} />
                                 <input className="inputfile inputfile.has-focus inputfile-1 inputfile-1.has-focus " style={{}} type="file" name="file" id="file" onChange={this.handleChange} />
                                 <label className="" for="file">Choose a file</label>
                                 <button className="btn btn-success register" type="submit" >Submit</button>
-                            </form>                           
+                            </form>
+                            <NavLink className="btn btn-danger register cancel-btn" to={`${this.props.history.pop}`}>Cancel </NavLink>
                         </div>
                     </div>
                 </div>
