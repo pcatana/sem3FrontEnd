@@ -41,7 +41,6 @@ export default class RentalDetails extends React.Component {
             .then(places => {
                 this.setState({
                     place: places,
-
                 });
             })
     }
@@ -86,7 +85,7 @@ export default class RentalDetails extends React.Component {
         const place = this.state.place;
         const isOrNot = this.state;
         const locations = this.state.locations;
-        console.log("locations", this.state)
+        // console.log("locations", this.state)
         return (
             <div className="container">
                 <div className="row">
@@ -117,7 +116,7 @@ export default class RentalDetails extends React.Component {
                         </div>
                     </div>
                     <div className="col-sm-4 col-md-4">
-                        <Booking />
+                        <Booking rentalId={this.props.match.params.id}/>
                     </div>
                 </div>
                 <div>
