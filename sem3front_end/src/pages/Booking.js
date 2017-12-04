@@ -45,7 +45,7 @@ export default class Booking extends React.Component {
         let rentalId = this.props.rentalId
 
         const options = {
-            method: 'get',
+            method: 'GET',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -61,6 +61,33 @@ export default class Booking extends React.Component {
             this.setState({
                 bookings: bookings
             })
+        })
+    }
+
+    deleteBooking = (weekToDelete) => {
+        let week = {
+            "week": weekToDelete
+        }
+
+        console.log(week)
+
+        let rentalId = this.props.rentalId;
+
+        const options = {
+            method: 'DELETE',
+            body: JSON.stringify(week),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                "Authorization": "Bearer " + this.state.token
+            }
+        }
+
+        //console.log(options.body)
+
+        fetch(serverURL+"api/rentals/" + rentalId + "/booking", options)
+        .then(() => {
+            this.getBookings()
         })
     }
 
@@ -82,7 +109,7 @@ export default class Booking extends React.Component {
             let rentalId = this.props.rentalId;
 
             const options = {
-                method: 'post',
+                method: 'POST',
                 body: JSON.stringify(week),
                 headers: {
                     'Accept': 'application/json',
@@ -106,12 +133,20 @@ export default class Booking extends React.Component {
     renderBookingsTable() {
 
         let result = []
+        console.log(this.state.bookings)
         if(!this.state.bookings.isEmpty)
             this.state.bookings.forEach(booking =>{
-                result.push(<tr>
-                            <td>{booking.week}</td>
-                            <td>{booking.userName}</td>
-                        </tr>)
+                if(booking.userName == this.state.userName)
+                    result.push(<tr>
+                                <td>{booking.week}</td>
+                                <td>{booking.userName}</td>
+                                <td><button className="btn btn-danger" onClick={() => this.deleteBooking(booking.week)}>Delete</button></td>
+                            </tr>)
+                else
+                    result.push(<tr>
+                                <td>{booking.week}</td>
+                                <td>{booking.userName}</td>
+                            </tr>)
             })
         return result
     }
@@ -149,6 +184,7 @@ export default class Booking extends React.Component {
                                 <tr>
                                   <th scope="col">Week</th>
                                   <th scope="col">Username</th>
+                                  <th scope="col">Delete</th>
                                 </tr>
                               </thead>
                               <tbody>
