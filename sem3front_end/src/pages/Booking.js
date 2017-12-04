@@ -9,6 +9,7 @@ export default class Booking extends React.Component {
             loggedIn: auth.loggedIn, userName: auth.userName, isUser: auth.isUser, isAdmin: auth.isAdmin, token: auth.getToken,
             week: "",
             bookings: [],
+            bookingError: "",
             btnStyle: "btn btn-info btn-block theLine book"
         }
         this.getBookings()
@@ -26,6 +27,7 @@ export default class Booking extends React.Component {
         const component = this
 
         component.setState({
+            bookingError: "",
             btnStyle: "btn btn-info btn-block theLine book"
         })
 
@@ -65,8 +67,14 @@ export default class Booking extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault();
 
+        this.setState({
+            bookingError: "It's already booked, are you blind?"
+        })
         if(this.state.btnStyle == "btn btn-info btn-block theLine book")
         {
+            this.setState({
+                bookingError: "",
+            })
             let week = {
                 "week": this.state.week
             }
@@ -120,8 +128,17 @@ export default class Booking extends React.Component {
                             <p className="line">Choose your time frame: </p>
                             <form onSubmit={this.handleSubmit}>
                                 <input id="date" type="week" name="week" onChange={this.handleChange}/>
-                                <input className={this.state.btnStyle} type="submit" />
+                                <input className={this.state.btnStyle} value="Book" type="submit" />
                             </form>
+                            {
+                            this.state.bookingError ?
+                                (   <div>
+                                        <br/>
+                                        <p>{this.state.bookingError}</p>
+                                    </div>
+                                ) :
+                                (<div> </div>)
+                            }
                         </div>
                     </div>
                     <div className="panel panel-info">
