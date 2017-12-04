@@ -203,7 +203,7 @@ export default class Landing extends Component {
 
 				            <div>
 				              <i className="fa fa-phone"></i>
-				              <p>+45 69 69 69 69</p>
+				              <p>+45 77 77 77 77</p>
 				            </div>
 
 				          </div>

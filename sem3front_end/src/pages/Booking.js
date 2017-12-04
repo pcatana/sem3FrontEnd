@@ -21,7 +21,6 @@ export default class Booking extends React.Component {
         this.setState({
             [name]: value
         })
-        console.log("week:", this.state.week);
     }
 
     getBookings = () => {
@@ -108,7 +107,7 @@ export default class Booking extends React.Component {
                         </div>
                     </div>
                     <div className="panel panel-info">
-                        <div className="panel-heading">Booked Weeks</div>
+                        <div className="panel-heading">Current Bookings</div>
                         <div className="panel-body">
                             <table class="table">
                               <thead>
