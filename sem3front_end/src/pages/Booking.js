@@ -140,7 +140,7 @@ export default class Booking extends React.Component {
                     result.push(<tr>
                                 <td>{booking.week}</td>
                                 <td>{booking.userName}</td>
-                                <td><button className="btn btn-danger" onClick={() => this.deleteBooking(booking.week)}>Delete</button></td>
+                                <td><button className="btn btn-danger" onClick={() => this.deleteBooking(booking.week)}>X</button></td>
                             </tr>)
                 else
                     result.push(<tr>
