@@ -19,8 +19,6 @@ export default class Places extends React.Component {
         var value = event.target.value.toLowerCase();
         updatedList = updatedList.filter(function (place) {
             return place.city.toLowerCase().search(value) !== -1
-                || place.description.toLowerCase().search(value) !== -1
-                || place.zip.toLowerCase().search(value) !== -1
         });
         this.setState({ places: updatedList })
     }
