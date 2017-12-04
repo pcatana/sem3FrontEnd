@@ -19,8 +19,6 @@ export default class Places extends React.Component {
         var value = event.target.value.toLowerCase();
         updatedList = updatedList.filter(function (place) {
             return place.city.toLowerCase().search(value) !== -1
-                || place.description.toLowerCase().search(value) !== -1
-                || place.zip.toLowerCase().search(value) !== -1
         });
         this.setState({ places: updatedList })
     }
@@ -61,7 +59,14 @@ export default class Places extends React.Component {
         this.props.history.push("/places");
     }
 
-
+    shortenDescription = (description) => {
+        if(description.length > 150 ) {
+            return description = description.substring(0, 149)+"...";
+        }
+        else {
+            return description;
+        }
+    }
 
     render() {
         const places = this.state.places;
@@ -82,11 +87,11 @@ export default class Places extends React.Component {
                             return (
                                 <div key={place.id} className="col-sm-6 col-md-4" style={{ width: 254 }}>
                                     <div className="thumbnail">
-                                        <img src={place.imageUrl} style={{ width: 250 }} alt=""/>
-                                        <div className="caption">
+                                        <img src={place.imageUrl} style={{ width: 214, height: 142 }} alt=""/>
+                                        <div className="caption" style={{height: 417}}>
                                             <h4>{place.title}</h4>
                                             <p>{place.city}</p>
-                                            <p>{place.description}</p>
+                                            <p style={{height: 120}}>{this.shortenDescription(place.description)}</p>
                                             <p>ZIP: {place.zip}</p>
                                             <p>Rating: {place.rating}</p>
                                             <p><Link className="btn btn-info btn-sm" to={`RentalDetails/${place.id}`}>Learn more</Link></p>
