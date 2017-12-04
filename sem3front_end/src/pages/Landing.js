@@ -10,7 +10,7 @@ export default class Landing extends Component {
 				        </div>
 
 				        <h1>Groop 10/10</h1>
-				        <h2><span className="rotating">We make beautiful houses available,We provide amazing rentals deals,We serve nearby locations suggestions</span></h2>
+				        <h2>We provide amazing rentals deals</h2>
 				        <div className="actions">
 				          <a href="#about" className="btn-get-started">Get Strated</a>
 				          <a href="#services" className="btn-services">Our Services</a>

@@ -8,19 +8,34 @@ export default class Booking extends React.Component {
         this.state = {
             loggedIn: auth.loggedIn, userName: auth.userName, isUser: auth.isUser, isAdmin: auth.isAdmin, token: auth.getToken,
             week: "",
-            bookings: []
+            bookings: [],
+            btnStyle: "btn btn-info btn-block theLine book"
         }
         this.getBookings()
     }
 
     handleChange = (event) => {
-        event.preventDefault();
-        const target = event.target;
-        const value = target.value;
-        const name = target.name;
+        event.preventDefault()
+        const target = event.target
+        const value = target.value
+        const name = target.name
         this.setState({
             [name]: value
         })
+
+        const component = this
+
+        component.setState({
+            btnStyle: "btn btn-info btn-block theLine book"
+        })
+
+        this.state.bookings.forEach(
+            function(elm) {
+                if(elm.week == value)
+                    component.setState({
+                        btnStyle: "btn btn-info disabled btn-block theLine book"
+                    })                    
+            })
     }
 
     getBookings = () => {
@@ -50,31 +65,34 @@ export default class Booking extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault();
 
-        let week = {
-            "week": this.state.week
-        }
-
-        let rentalId = this.props.rentalId;
-
-        const options = {
-            method: 'post',
-            body: JSON.stringify(week),
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                "Authorization": "Bearer " + this.state.token
+        if(this.state.btnStyle == "btn btn-info btn-block theLine book")
+        {
+            let week = {
+                "week": this.state.week
             }
+
+            let rentalId = this.props.rentalId;
+
+            const options = {
+                method: 'post',
+                body: JSON.stringify(week),
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    "Authorization": "Bearer " + this.state.token
+                }
+            }
+
+            //console.log(options.body)
+
+            fetch(serverURL+"api/rentals/" + rentalId + "/booking", options)
+            .then(res => {
+                return res.json();
+            })
+            .then(newRating => {
+                this.getBookings()
+            })
         }
-
-        console.log(options.body)
-
-        fetch(serverURL+"api/rentals/" + rentalId + "/booking", options)
-        .then(res => {
-            return res.json();
-        })
-        .then(newRating => {
-            this.getBookings()
-        })
     }
 
     renderBookingsTable() {
@@ -102,7 +120,7 @@ export default class Booking extends React.Component {
                             <p className="line">Choose your time frame: </p>
                             <form onSubmit={this.handleSubmit}>
                                 <input id="date" type="week" name="week" onChange={this.handleChange}/>
-                                <input className="btn btn-success btn-block theLine book" type="submit" />
+                                <input className={this.state.btnStyle} type="submit" />
                             </form>
                         </div>
                     </div>
