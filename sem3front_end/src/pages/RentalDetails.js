@@ -170,7 +170,8 @@ class Add extends React.Component {
             description: "",
             latitude: "",
             longitude: "",
-            file: null
+            file: null,
+            token: auth.getToken
         }
     }
 
@@ -190,7 +191,16 @@ class Add extends React.Component {
             formData.append(key, this.state[key]);
         }
 
-        fetch(serverURL + "api/locations", { method: "POST", body: formData })
+        const options = {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json',
+                "Authorization": "Bearer " + this.state.token
+            }
+        }
+
+        fetch(serverURL + "api/locations", options)
             .then(res => {
                 return res.json();
             })
