@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  react-app:
+    build: .
+    image: fbbc/sem3project-frontend
+    ports:
+      - 5000:5000
