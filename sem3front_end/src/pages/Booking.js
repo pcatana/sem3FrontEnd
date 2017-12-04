@@ -1,6 +1,9 @@
 import React from 'react';
 import auth from '../authorization/auth';
 import { serverURL } from '../config.json';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker.css';
 
 export default class Booking extends React.Component {
     constructor(props) {
@@ -8,18 +11,25 @@ export default class Booking extends React.Component {
         this.state = {
             loggedIn: auth.loggedIn, userName: auth.userName, isUser: auth.isUser, isAdmin: auth.isAdmin, token: auth.getToken,
             week: "",
-            bookings: []
+            bookings: [],
+            startDate: ""
         }
         this.getBookings()
     }
 
     handleChange = (event) => {
-        event.preventDefault();
-        const target = event.target;
-        const value = target.value;
-        const name = target.name;
+        event.preventDefault()
+        const target = event.target
+        const value = target.value
+        const name = target.name
         this.setState({
             [name]: value
+        })
+    }
+
+    handleCalendarChange = (date) => {
+        this.setState({
+          startDate: date
         })
     }
 
@@ -96,6 +106,12 @@ export default class Booking extends React.Component {
         if (isOrNot.isAdmin || isOrNot.isUser) {
             return (
                 <div>
+                    <DatePicker
+                        selected={this.state.startDate}
+                        onChange={this.handleCalendarChange}
+                        dateFormat="YYYY-MM"
+                    />
+                    <br/>
                     <div className="panel panel-default">
                         <div className="panel-heading">Book Your Holiday</div>
                         <div className="panel-body">
