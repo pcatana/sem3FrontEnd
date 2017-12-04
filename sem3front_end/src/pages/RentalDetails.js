@@ -81,6 +81,15 @@ export default class RentalDetails extends React.Component {
         this.props.history.push(`${this.props.history.pop}`);
     }
 
+    shortenDescription = (description) => {
+        if(description.length > 150 ) {
+            return description = description.substring(0, 149)+"...";
+        }
+        else {
+            return description;
+        }
+    }
+
     render() {
         const place = this.state.place;
         const isOrNot = this.state;
@@ -141,10 +150,10 @@ export default class RentalDetails extends React.Component {
                                 return (
                                     <div key={place.id} className="col-sm-6 col-md-4" style={{ width: 254 }}>
                                         <div className="thumbnail">
-                                            <img src={place.imageUrl} style={{ width: 250 }} alt="Great Place Picture" />
+                                            <img src={place.imageUrl} style={{ width: 214, height: 142 }} alt="Great Place Picture" />
                                             <div className="caption">
                                                 <h4>{place.title}</h4>
-                                                <p>{place.description}</p>
+                                                <p style={{height: 120}}>{this.shortenDescription(place.description)}</p>
                                                 <p>Latitude: {place.latitude}</p>
                                                 <p>Longitude: {place.longitude}</p>
                                             </div>
