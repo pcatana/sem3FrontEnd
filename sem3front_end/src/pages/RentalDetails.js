@@ -58,7 +58,7 @@ export default class RentalDetails extends React.Component {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                "Authorization": "bearer " + auth.getToken
+                "Authorization": "Bearer " + auth.getToken
             }
         }
         fetch(serverURL+"api/rentals/" + rentalId+"/rating", options)
@@ -172,7 +172,7 @@ class Add extends React.Component {
     constructor(props) {
         super(props);
         const ImportedProps = this.props;
-        console.log("importedProps", ImportedProps);
+        // console.log("importedProps", ImportedProps);
         this.state = {
             title: "",
             description: "",
@@ -218,7 +218,7 @@ class Add extends React.Component {
 
     }
     render() {
-        console.log("theProps", this.props);
+        // console.log("theProps", this.props);
         return (
             <div className="row">
                 <div className="col-sm-6">

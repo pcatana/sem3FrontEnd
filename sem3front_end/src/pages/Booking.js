@@ -8,22 +8,21 @@ function getDateOfWeek(weekNumber,year){
 }
 
 function inThePast(week_format_date) {
-    console.log(week_format_date)
+    // console.log(week_format_date)
     let date = moment(getDateOfWeek(week_format_date.slice(-2),week_format_date.slice(0,4))).format('YYYY-MM-DD')
-    console.log(date)
+    // console.log(date)
     let now = moment().format('YYYY-MM-DD')
-    console.log(now)
-    console.log(date < now)
+    // console.log(now)
+    // console.log(date < now)
     if(date < now)
-        return true;
-    return false;
+        return true
+    return false
 }
 
 export default class Booking extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            loggedIn: auth.loggedIn, userName: auth.userName, isUser: auth.isUser, isAdmin: auth.isAdmin, token: auth.getToken,
             week: "",
             bookings: [],
             bookingError: "",
@@ -71,7 +70,7 @@ export default class Booking extends React.Component {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                "Authorization": "bearer "+ auth.getToken
+                "Authorization": "Bearer "+ auth.getToken
             }
         }
 

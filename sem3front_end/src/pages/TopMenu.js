@@ -6,20 +6,10 @@ class TopMenu extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { loggedIn: auth.loggedIn, userName: auth.userName, isUser: false, isAdmin: false }
-  }
-
-  loginStatus = (status, userName, isUser, isAdmin) => {
-    this.setState({ loggedIn: status, userName, isUser, isAdmin });
-  }
-
-  componentDidMount() {
-    auth.setLoginObserver(this.loginStatus);
   }
 
   render() {
-
-    const logInStatus = this.state.loggedIn ? "Logged in as: " + this.state.userName : "";
+    const logInStatus = auth.isloggedIn ? "Logged in as: " + auth.userName : "";
     //console.log("RENDERING - REMOVE ME",JSON.stringify(this.state));
     return (
       <div>
@@ -34,12 +24,12 @@ class TopMenu extends Component {
               <ul className="nav navbar-nav">
                 <li><Link to="/about">About</Link></li>
                 <li><Link to="/places">Rentals</Link></li>
-                {this.state.isAdmin && (<li><Link to="/admin">Page for Admins</Link></li>)}
+                {auth.isAdmin && (<li><Link to="/admin">Page for Admins</Link></li>)}
               </ul>
               <ul className="nav navbar-nav navbar-right">
                 <li className="navbar-text" style={{ color: "white" }}>{logInStatus}</li>
                 <li>
-                  {this.state.loggedIn ?
+                  {auth.isloggedIn ?
                     (
                       <Link to="/logout"><span className="glyphicon glyphicon-log-in"></span> Logout</Link>
                     ) :

@@ -8,8 +8,7 @@ export default class Places extends React.Component {
         super(props);
         this.state = {
             places: [],
-            initialPlaces: [],
-            loggedIn: auth.loggedIn, userName: auth.userName, isUser: auth.isUser, isAdmin: auth.isAdmin
+            initialPlaces: []
         }
     }
 
