@@ -1,6 +1,23 @@
 import React from 'react';
 import auth from '../authorization/auth';
+import moment from 'moment';
 import { serverURL } from '../config.json';
+
+function getDateOfWeek(weekNumber,year){
+    return new Date(year, 0, 1+((weekNumber-1)*7)).toString();
+}
+
+function inThePast(week_format_date) {
+    console.log(week_format_date)
+    let date = moment(getDateOfWeek(week_format_date.slice(-2),week_format_date.slice(0,4))).format('YYYY-MM-DD')
+    console.log(date)
+    let now = moment().format('YYYY-MM-DD')
+    console.log(now)
+    console.log(date < now)
+    if(date < now)
+        return true;
+    return false;
+}
 
 export default class Booking extends React.Component {
     constructor(props) {
@@ -31,12 +48,17 @@ export default class Booking extends React.Component {
             btnStyle: "btn btn-info btn-block theLine book"
         })
 
+        if(inThePast(value))
+            component.setState({
+                btnStyle: "btn btn-info disabled btn-block theLine book",
+            })
+
         this.state.bookings.forEach(
             function(elm) {
                 if(elm.week == value)
                     component.setState({
-                        btnStyle: "btn btn-info disabled btn-block theLine book"
-                    })                    
+                        btnStyle: "btn btn-info disabled btn-block theLine book",
+                    })
             })
     }
 
@@ -49,7 +71,7 @@ export default class Booking extends React.Component {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                "Authorization": "bearer "+this.state.token
+                "Authorization": "bearer "+ auth.getToken
             }
         }
 
@@ -69,7 +91,7 @@ export default class Booking extends React.Component {
             "week": weekToDelete
         }
 
-        console.log(week)
+        // console.log(week)
 
         let rentalId = this.props.rentalId;
 
@@ -79,7 +101,7 @@ export default class Booking extends React.Component {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                "Authorization": "Bearer " + this.state.token
+                "Authorization": "Bearer " + auth.getToken
             }
         }
 
@@ -97,6 +119,12 @@ export default class Booking extends React.Component {
         this.setState({
             bookingError: "It's already booked, are you blind?"
         })
+
+        if(inThePast(this.state.week))
+            this.setState({
+                bookingError: "Are you trying to book in the past? Are you retarded or something?"
+            })
+
         if(this.state.btnStyle == "btn btn-info btn-block theLine book")
         {
             this.setState({
@@ -114,7 +142,7 @@ export default class Booking extends React.Component {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    "Authorization": "Bearer " + this.state.token
+                    "Authorization": "Bearer " + auth.getToken
                 }
             }
 
@@ -133,10 +161,10 @@ export default class Booking extends React.Component {
     renderBookingsTable() {
 
         let result = []
-        console.log(this.state.bookings)
+        // console.log(this.state.bookings)
         if(!this.state.bookings.isEmpty)
             this.state.bookings.forEach(booking =>{
-                if(booking.userName == this.state.userName)
+                if(booking.userName == auth.userName || auth.isAdmin)
                     result.push(<tr>
                                 <td>{booking.week}</td>
                                 <td>{booking.userName}</td>
@@ -152,9 +180,7 @@ export default class Booking extends React.Component {
     }
 
     render() {
-        const isOrNot = this.state;
-
-        if (isOrNot.isAdmin || isOrNot.isUser) {
+        if (auth.isAdmin || auth.isUser) {
             return (
                 <div>
                     <div className="panel panel-default">

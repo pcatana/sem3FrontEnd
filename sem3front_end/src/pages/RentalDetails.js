@@ -53,12 +53,12 @@ export default class RentalDetails extends React.Component {
         };
 
         const options = {
-            method: 'put',
+            method: 'PUT',
             body: JSON.stringify(rating),
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                "Authorization": "bearer "+this.state.token
+                "Authorization": "bearer " + auth.getToken
             }
         }
         fetch(serverURL+"api/rentals/" + rentalId+"/rating", options)
@@ -92,7 +92,6 @@ export default class RentalDetails extends React.Component {
 
     render() {
         const place = this.state.place;
-        const isOrNot = this.state;
         const locations = this.state.locations;
         // console.log("locations", this.state)
         return (
@@ -112,7 +111,7 @@ export default class RentalDetails extends React.Component {
                                 <p>Longitude: {place.longitude} </p>
                                 <StarRatings
                                     rating={place.rating}
-                                    isSelectable={isOrNot.isAdmin || isOrNot.isUser}
+                                    isSelectable={auth.isAdmin || auth.isUser}
                                     isAggregateRating={true}
                                     changeRating={this.changeRating}
                                     numOfStars={5}
@@ -132,7 +131,7 @@ export default class RentalDetails extends React.Component {
                     <div className="page-header">
                         <h1>Places near by </h1>
                         {
-                            isOrNot.isUser || isOrNot.isAdmin ?
+                            auth.isUser || auth.isAdmin ?
                                 (
                                     <NavLink className="btn btn-primary add" to={`${this.props.match.url}/add`} >Add Location</NavLink>
                                 ) :
@@ -205,7 +204,7 @@ class Add extends React.Component {
             body: formData,
             headers: {
                 'Accept': 'application/json',
-                "Authorization": "Bearer " + this.state.token
+                "Authorization": "Bearer " + auth.getToken
             }
         }
 
