@@ -121,7 +121,7 @@ export default class Booking extends React.Component {
 
         if(inThePast(this.state.week))
             this.setState({
-                bookingError: "Are you trying to book in the past? Did you think that would work?."
+                bookingError: "Are you trying to book in the past? Did you think that would work?"
             })
 
         if(this.state.btnStyle == "btn btn-info btn-block theLine book")
