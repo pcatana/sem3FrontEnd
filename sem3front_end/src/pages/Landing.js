@@ -84,7 +84,7 @@ export default class Landing extends Component {
 				        </div>
 				        <div className="col-md-9">
 				          <div className="quote">
-				            <b><img src="img/quote_sign_left.png" alt=""></img></b> Really like the Travis thingy. Also the Jackson. These guys know their shit. <small><img src="img/quote_sign_right.png" alt=""></img></small>
+				            <b><img src="img/quote_sign_left.png" alt=""></img></b> Really like the Travis thingy. Also the Jackson. These guys know their stuff. <small><img src="img/quote_sign_right.png" alt=""></img></small>
 				          </div>
 				        </div>
 				      </div>
@@ -92,7 +92,7 @@ export default class Landing extends Component {
 				      <div className="row">
 				        <div className="col-md-9">
 				          <div className="quote">
-				            <b><img src="img/quote_sign_left.png" alt=""></img></b> Looks nice. Needs better UX & UI tho.<small><img src="img/quote_sign_right.png" alt=""></img></small>
+				            <b><img src="img/quote_sign_left.png" alt=""></img></b> Looks nice. Needs better UX & UI thoough.<small><img src="img/quote_sign_right.png" alt=""></img></small>
 				          </div>
 				        </div>
 				        <div className="col-md-3">
@@ -136,7 +136,7 @@ export default class Landing extends Component {
 				          <div className="member">
 				            <div className="pic"><img src="img/petru.jpg" alt=""></img></div>
 				            <h4>Petru Catana</h4>
-				            <span>Frontend Components and Alcoholism Expert</span>
+				            <span>Frontend Components Guru</span>
 				            <div className="social">
 				              <a href=""><i className="fa fa-twitter"></i></a>
 				              <a href=""><i className="fa fa-facebook"></i></a>
@@ -184,7 +184,7 @@ export default class Landing extends Component {
 				        <div className="col-md-12">
 				          <h3 className="section-title">Contact Us</h3>
 				          <div className="section-title-divider"></div>
-				          <p className="section-description">Tell us where we fucked up!</p>
+				          <p className="section-description">Tell us where we need to improve</p>
 				        </div>
 				      </div>
 

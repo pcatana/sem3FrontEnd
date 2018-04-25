@@ -13,7 +13,7 @@ export default class Places extends React.Component {
     }
 
 
-    filterList = (event) => {
+    filterList =  (event) => {
         var updatedList = this.state.initialPlaces;
         var value = event.target.value.toLowerCase();
         updatedList = updatedList.filter(function (place) {
