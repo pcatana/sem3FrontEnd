@@ -58,7 +58,7 @@ export default class Landing extends Component {
 				          <p className="subscribe-text">Join our -1000 subscribers and get updates on our latest feature updates, new locations support, and amazing rental deals</p>
 				        </div>
 				        <div className="col-md-4 subscribe-btn-container">
-				          <a className="subscribe-btn" href="#">Subscribe Now</a>
+				          <a className="subscribe-btn" href="#">Subscribe</a>
 				        </div>
 				      </div>
 				    </div>
