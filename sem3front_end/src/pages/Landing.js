@@ -92,7 +92,7 @@ export default class Landing extends Component {
 				      <div className="row">
 				        <div className="col-md-9">
 				          <div className="quote">
-				            <b><img src="img/quote_sign_left.png" alt=""></img></b> Looks nice. Needs better UX & UI thoough.<small><img src="img/quote_sign_right.png" alt=""></img></small>
+				            <b><img src="img/quote_sign_left.png" alt=""></img></b> Looks nice. Needs better UX & UI.<small><img src="img/quote_sign_right.png" alt=""></img></small>
 				          </div>
 				        </div>
 				        <div className="col-md-3">
